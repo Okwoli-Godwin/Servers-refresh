@@ -8,6 +8,6 @@ export const appConfig = (app: Application) => {
         .use(cors())
         .use(morgan("*"))
 
-        app.use("app", router)
+        app.use("/app", router)
 }
 
