@@ -28,12 +28,17 @@ export const register = async (req: Request, res: Response) => {
     }
 }
 
-export const lgin = async (req: Request, res: Response) => {
+export const getall = async (req: Request, res: Response) => {
     try {
-        
+        const users = models.find()
+
+        return res.status(200).json({
+            message: "users gotten",
+            data: users
+        })
     } catch (error) {
         return res.status(404).json({
-            message: "failed to login user"
+            message: "no users"
         })
     }
 }
