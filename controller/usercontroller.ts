@@ -30,7 +30,7 @@ export const register = async (req: Request, res: Response) => {
 
 export const getall = async (req: Request, res: Response) => {
     try {
-        const users = models.find()
+        const users = await models.find()
 
         return res.status(200).json({
             message: "users gotten",
