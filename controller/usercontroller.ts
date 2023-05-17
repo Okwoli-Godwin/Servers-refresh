@@ -23,6 +23,7 @@ export const register = async (req: Request, res: Response) => {
     } catch (error) {
         return res.status(404).json({
             message: "An error occured",
+            data: error
         })
     }
 }
