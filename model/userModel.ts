@@ -4,8 +4,6 @@ interface User {
     name: string;
     password: string;
     email: string;
-    phoneNumber: number;
-    isAdmin: boolean;
 }
 
 interface userData extends User, mongoose.Document{}
@@ -23,12 +21,6 @@ const iUser = new mongoose.Schema<User>(
         email: {
             type: String,
             required: [true, "password is required"]
-        },
-        phoneNumber: {
-            type: Number
-        },
-        isAdmin: {
-            type: Boolean
         },
     },
     {timestamps: true}
