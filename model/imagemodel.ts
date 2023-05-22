@@ -32,7 +32,8 @@ const imageupload = new mongoose.Schema<imageData>(
             type: String,
             required: [true, "summary is required"]
         }
-    }
+    },
+    {timestamps: true}
 )
 
 const imagemodel = mongoose.model<images>("myImages", imageupload)
