@@ -6,8 +6,6 @@ interface User {
     email: string;
     phoneNumber: number;
     isAdmin: boolean;
-    verified: boolean;
-    books: {}[];
 }
 
 interface userData extends User, mongoose.Document{}
@@ -32,15 +30,6 @@ const iUser = new mongoose.Schema<User>(
         isAdmin: {
             type: Boolean
         },
-        verified: {
-            type: Boolean
-        },
-        books : [
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "Bookcollection"
-            }
-        ]
     },
     {timestamps: true}
 )
