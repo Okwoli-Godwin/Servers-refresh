@@ -26,3 +26,18 @@ export const newpost = async (req: Request, res: Response):Promise<Response> => 
     }
 }
 
+export const getimages = async (req: Request, res: Response): Promise<Response> => {
+    try {
+        const getpost = await imagemodel.find();
+
+        return res.status(201).json({
+            message: "images gotten successfully",
+            data: getpost
+        })
+    } catch (error) {
+        return res.status(400).json({
+            message: "Failed to get images",
+            data: error.message
+        })
+    }
+}
