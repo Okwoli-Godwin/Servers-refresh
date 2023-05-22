@@ -35,6 +35,6 @@ const imageupload = new mongoose.Schema<imageData>(
     }
 )
 
-const imagemodel = mongoose.model("myImages", imageupload)
+const imagemodel = mongoose.model<images>("myImages", imageupload)
 
 export default imagemodel
