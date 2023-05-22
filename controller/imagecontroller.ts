@@ -57,3 +57,22 @@ export const getoneimage = async (req: Request, res: Response): Promise<Response
         })
     }
 }
+
+export const updateimage = async (req: Request, res: Response): Promise<Response> => {
+    try {
+        const { course, name, section, summary } = req.body
+        const update = await imagemodel.findByIdAndUpdate(
+            req.params.id, { course, name, section, summary }, { new: true }
+        );
+
+        return res.status(201).json({
+            message: "image updated",
+            data: update
+        })
+    } catch (error) {
+        return res.status(400).json({
+            message: "failed to update",
+            data: error.message
+        })
+    }
+}
