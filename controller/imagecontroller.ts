@@ -76,3 +76,22 @@ export const updateimage = async (req: Request, res: Response): Promise<Response
         })
     }
 }
+
+export const deleteimage = async (req: Request, res: Response): Promise<Response> => {
+    try {
+        const { course, name, section, summary } = req.body;
+        const deleteimage = await imagemodel.findByIdAndRemove(
+            req.params.id, {course, name, section, summary }
+        )
+
+        return res.status(201).json({
+            message: "image deleted",
+            data: deleteimage
+        })
+    } catch (error) {
+        return res.status(400).json({
+            message: "image failed to delete",
+            data: error.message
+        })
+    }
+}
