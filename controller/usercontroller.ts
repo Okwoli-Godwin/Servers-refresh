@@ -8,22 +8,23 @@ export const register = async (req: Request, res: Response) => {
         const { name, password, email } = req.body
         
         const salt = await bcrypt.genSalt(10)
-        const compare = bcrypt.hash(salt, password)
+        const hashed = await bcrypt.hash(password, salt)
 
-        const create = await models.create({
+        const created = await models.create({
             name,
-            password: compare,
+            password: hashed,
             email
         })
 
         return res.status(200).json({
             message: "user created",
-            data: create
+            data: created
         })
-    } catch (error) {
+    } catch (error:any) {
         return res.status(404).json({
             message: "An error occured",
-            data: error
+            data: error,
+            err : error.message
         })
     }
 }
