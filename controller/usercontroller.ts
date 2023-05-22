@@ -42,13 +42,3 @@ export const getall = async (req: Request, res: Response) => {
         })
     }
 }
-
-export const searchuser = async (req: Request, res: Response) => {
-    try {
-        const search = await models.find(req.query).sort(
-            {}
-        )
-    } catch (error) {
-        
-    }
-}
