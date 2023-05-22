@@ -10,7 +10,7 @@ export const newpost = async (req: any, res: Response):Promise<Response> => {
         const newfile = await imagemodel.create({
             course,
             name,
-            image: cloudImg.secure_url,
+            coverImage: cloudImg.secure_url,
             section,
             summary
         });

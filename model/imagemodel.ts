@@ -2,7 +2,7 @@ import mongoose from "mongoose"
 
 interface imageData{
     course: string,
-    image: string,
+    coverImage: string,
     name: string,
     section: string,
     summary: string
@@ -16,7 +16,7 @@ const imageupload = new mongoose.Schema<imageData>(
             type: String,
             required: [true, "course is required"]
         },
-        image: {
+        coverImage: {
             type: String,
             required: [true, "image is required"]
         },
