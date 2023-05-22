@@ -41,3 +41,19 @@ export const getimages = async (req: Request, res: Response): Promise<Response> 
         })
     }
 }
+
+export const getoneimage = async (req: Request, res: Response): Promise<Response> => {
+    try {
+        const getone = await imagemodel.findById(req.params.id)
+
+        return res.status(201).json({
+            message: "one image gotten",
+            data: getone
+        })
+    } catch (error) {
+        return res.status(400).json({
+            message: "Failed to get image",
+            data: error.message
+        })
+    }
+}
