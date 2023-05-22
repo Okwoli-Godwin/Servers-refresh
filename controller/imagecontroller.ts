@@ -2,9 +2,9 @@ import express, { Request, Response } from "express"
 import imagemodel from "../model/imagemodel"
 import cloudinary from "../Config/cloudinary"
 
-export const newpost = async (req: Request, res: Response):Promise<Response> => {
+export const newpost = async (req: any, res: Response):Promise<Response> => {
     try {
-        const cloudImg = await cloudinary.uploader.upload(req?.file!.path)
+        const cloudImg = await cloudinary.uploader?.upload(req?.file!.path)
         const { course, name, section, summary } = req.body;
 
         const newfile = await imagemodel.create({
@@ -18,7 +18,7 @@ export const newpost = async (req: Request, res: Response):Promise<Response> => 
             message: "image uploaded",
             data: newfile
         })
-    } catch (error) {
+    } catch (error:any) {
         return res.status(400).json({
             message: "failed to upload image",
             data: error.message
@@ -34,7 +34,7 @@ export const getimages = async (req: Request, res: Response): Promise<Response> 
             message: "images gotten successfully",
             data: getpost
         })
-    } catch (error) {
+    } catch (error:any) {
         return res.status(400).json({
             message: "Failed to get images",
             data: error.message
@@ -50,7 +50,7 @@ export const getoneimage = async (req: Request, res: Response): Promise<Response
             message: "one image gotten",
             data: getone
         })
-    } catch (error) {
+    } catch (error:any) {
         return res.status(400).json({
             message: "Failed to get image",
             data: error.message
@@ -69,7 +69,7 @@ export const updateimage = async (req: Request, res: Response): Promise<Response
             message: "image updated",
             data: update
         })
-    } catch (error) {
+    } catch (error:any) {
         return res.status(400).json({
             message: "failed to update",
             data: error.message
@@ -88,7 +88,7 @@ export const deleteimage = async (req: Request, res: Response): Promise<Response
             message: "image deleted",
             data: deleteimage
         })
-    } catch (error) {
+    } catch (error:any) {
         return res.status(400).json({
             message: "image failed to delete",
             data: error.message
