@@ -7,7 +7,7 @@ const imagerouter = express.Router()
 imagerouter.route("/post").post(coverUpload, newpost)
 imagerouter.route("/getall").get(getimages)
 imagerouter.route("/oneimage/:id").get(getoneimage)
-imagerouter.route("/update/:id").patch(updateimage)
+imagerouter.route("/update/:imageId").patch(updateimage)
 imagerouter.route("/delete/:id").delete(deleteimage)
 
 export default imagerouter
