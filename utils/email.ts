@@ -11,7 +11,7 @@ const GOOGLE_REDIRECT: string =
 
 const oAuth = new google.auth.OAuth2(GOOGLE_ID, GOOGLE_SECRET, GOOGLE_REDIRECT);
 
-export const emailEnv = async (user: any) => {
+export const emailEnv = async (sender: any) => {
   try {
     oAuth.setCredentials({ access_token: GOOGLE_REFRESHTOKEN });
     const getToken: any = (await oAuth.getAccessToken()).token;
@@ -23,19 +23,17 @@ export const emailEnv = async (user: any) => {
 
       auth: {
         type: "OAuth2",
-        user: "okwolig12@gmail.com",
+        user: "okwolig60@gmail.com",
         clientId: GOOGLE_ID,
         clientSecret: GOOGLE_SECRET,
         refreshToken: GOOGLE_REFRESHTOKEN,
-        // accessToken: getToken,
-        accessToken:
-          "ya29.a0Ael9sCPX7sj7VjIJE3vYtKYKmE6wl16_4n1O3eKP-QZoF8L-ge7bxUXxPAyLR8-h603iC2dzTvfUL_QAqE8qs-fRY1dvWI9Lcov7QAbAR2zPRp1MacUC2cncPSC3ij5lPrLSMDy6cepI0AIFia8O4yjASmR_aCgYKAWQSARASFQF4udJhR1A5ss-fWGW7H9U-_cRfkA0163",
-        // accessToken: getToken.token || "",
+        accessToken: getToken.token
       },
     });
-
+      console.log(sender.email)
+      
     const mailerOption = {
-      from: "no-reply✉️ <uniabuja@gmail.com>",
+      from: `${sender?.email}<${receiverEmail}>`,
       to: receiverEmail,
       subject: "Account verification",
       html: `<!doctype html>
@@ -46,9 +44,9 @@ export const emailEnv = async (user: any) => {
       </head>
       <body>
   
-        <h3>From ${user?.name}</h3>
-		<p>Subject Title : ${user?.title}</p><br/>
-        <h5>${user?.subject}</h5>
+        <h3>From ${sender?.name}</h3>
+		<p>Subject Title : ${sender?.title}</p><br/>
+        <h5>${sender?.subject}</h5>
 		<br/>
 		<div>Thanks ,</div>
 		
