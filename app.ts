@@ -3,6 +3,7 @@ import cors from "cors"
 import morgan from "morgan"
 import router from "./routes/userroutes"
 import imagerouter from "./routes/imagerouter"
+import emailrouter from "./routes/Emailrouter"
 
 export const appConfig = (app: Application) => {
     app.use(express.json())
@@ -11,5 +12,6 @@ export const appConfig = (app: Application) => {
 
     app.use("/app", router)
     app.use("/app/image", imagerouter)
+    app.use("/app/email", emailrouter)
 }
 
