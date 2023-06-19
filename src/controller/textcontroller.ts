@@ -1,6 +1,26 @@
 import { Request, Response } from "express"
 import textsmodel from "../model/textmodel"
 
+export const post = async (req: Request, res: Response): Promise<Response> => {
+    try {
+        const { writeups, button } = req.body;
+        const newtext = await textsmodel.create({
+            writeups,
+            button
+        })
+
+        return res.status(200).json({
+            message: "texts posted",
+            data: newtext
+        })
+    } catch (error) {
+        return res.status(404).json({
+            message: "failed to post texts",
+            data: error
+        })
+    }
+}
+
 export const update = async (req: Request, res: Response): Promise<Response> => {
     try {
         const { writeups, button } = req.body;
