@@ -39,6 +39,7 @@
     "nodemailer": "^6.9.3"
   },
   "devDependencies": {
-    "@types/jsonwebtoken": "^9.0.1"
+    "@types/jsonwebtoken": "^9.0.1",
+    "ts-node-dev": "^2.0.0"
   }
 }
