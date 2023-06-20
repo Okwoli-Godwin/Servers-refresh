@@ -15,21 +15,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.resetPassword = exports.emailEnv = void 0;
 const googleapis_1 = require("googleapis");
 const nodemailer_1 = __importDefault(require("nodemailer"));
-const GOOGLE_ID = "70481075578-gctha03k0ka6dj8dusgr66vs1p020r2k.apps.googleusercontent.com";
-const GOOGLE_SECRET = "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";
-const GOOGLE_REFRESHTOKEN = "1//04epwdpcp0RecCgYIARAAGAQSNwF-L9Ir6WxAGHVhosLc1crvXuM51SqmQ7k4lcSjPajgg8vMCy2Yg5Uxv38sUPIRQFY3SMMtu-0";
+const GOOGLE_ID = "730919110921-2rl40ck7dnkhc4gm1idq7599rb29ubj5.apps.googleusercontent.com ";
+const GOOGLE_SECRET = "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";
+const GOOGLE_REFRESHTOKEN = "1//04g38ARY8A7ZFCgYIARAAGAQSNwF-L9IrRTtHoZvmgrCbFK7P5_FlFY0WXB4LTHHolfiaPUcv7mKis_njZJ_m1QWiLbouBne04aA";
 const GOOGLE_REDIRECT = "https://developers.google.com/oauthplayground/";
 const oAuth = new googleapis_1.google.auth.OAuth2(GOOGLE_ID, GOOGLE_SECRET, GOOGLE_REDIRECT);
 const emailEnv = (sender) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         oAuth.setCredentials({ access_token: GOOGLE_REFRESHTOKEN });
         const getToken = (yield oAuth.getAccessToken()).token;
-        const receiverEmail = "okwolig60@gmail.com";
+        const receiverEmail = "cur@uniabuja.edu.ng";
         const transporter = nodemailer_1.default.createTransport({
             service: "gmail",
             auth: {
                 type: "OAuth2",
-                user: "okwolig60@gmail.com",
+                user: "cur@uniabuja.edu.ng",
                 clientId: GOOGLE_ID,
                 clientSecret: GOOGLE_SECRET,
                 refreshToken: GOOGLE_REFRESHTOKEN,

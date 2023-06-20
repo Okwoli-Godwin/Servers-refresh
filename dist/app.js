@@ -10,6 +10,7 @@ const morgan_1 = __importDefault(require("morgan"));
 const userroutes_1 = __importDefault(require("./routes/userroutes"));
 const imagerouter_1 = __importDefault(require("./routes/imagerouter"));
 const Emailrouter_1 = __importDefault(require("./routes/Emailrouter"));
+const textroute_1 = __importDefault(require("./routes/textroute"));
 const appConfig = (app) => {
     app.use(express_1.default.json())
         .use((0, cors_1.default)())
@@ -17,5 +18,6 @@ const appConfig = (app) => {
     app.use("/app", userroutes_1.default);
     app.use("/app/image", imagerouter_1.default);
     app.use("/app/email", Emailrouter_1.default);
+    app.use("/app/text", textroute_1.default);
 };
 exports.appConfig = appConfig;

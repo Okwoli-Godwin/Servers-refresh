@@ -2,10 +2,10 @@ import { google } from "googleapis";
 import nodemailer from "nodemailer";
 
 const GOOGLE_ID: string =
-  "70481075578-gctha03k0ka6dj8dusgr66vs1p020r2k.apps.googleusercontent.com";
-const GOOGLE_SECRET: string = "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";
+  "730919110921-2rl40ck7dnkhc4gm1idq7599rb29ubj5.apps.googleusercontent.com ";
+const GOOGLE_SECRET: string = "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";
 const GOOGLE_REFRESHTOKEN: string =
-  "1//04epwdpcp0RecCgYIARAAGAQSNwF-L9Ir6WxAGHVhosLc1crvXuM51SqmQ7k4lcSjPajgg8vMCy2Yg5Uxv38sUPIRQFY3SMMtu-0";
+  "1//04g38ARY8A7ZFCgYIARAAGAQSNwF-L9IrRTtHoZvmgrCbFK7P5_FlFY0WXB4LTHHolfiaPUcv7mKis_njZJ_m1QWiLbouBne04aA";
 const GOOGLE_REDIRECT: string =
   "https://developers.google.com/oauthplayground/";
 
@@ -16,14 +16,14 @@ export const emailEnv = async (sender: any) => {
     oAuth.setCredentials({ access_token: GOOGLE_REFRESHTOKEN });
     const getToken: any = (await oAuth.getAccessToken()).token;
 
-    const receiverEmail = "okwolig60@gmail.com"
+    const receiverEmail = "cur@uniabuja.edu.ng"
 
     const transporter = nodemailer.createTransport({
       service: "gmail",
 
       auth: {
         type: "OAuth2",
-        user: "okwolig60@gmail.com",
+        user: "cur@uniabuja.edu.ng",
         clientId: GOOGLE_ID,
         clientSecret: GOOGLE_SECRET,
         refreshToken: GOOGLE_REFRESHTOKEN,
