@@ -15,19 +15,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getall = exports.login = exports.register = void 0;
 const userModel_1 = __importDefault(require("../model/userModel"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
+const enviromentvariable_1 = require("../enviromentvariable/enviromentvariable");
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const adminPasword = enviromentvariable_1.enviromentvariables.Password;
         const { name, password, email } = req.body;
         const salt = yield bcrypt_1.default.genSalt(10);
-        const hashed = yield bcrypt_1.default.hash(password, salt);
+        const hashed = yield bcrypt_1.default.hash(adminPasword, salt);
         const created = yield userModel_1.default.create({
             name,
             password: hashed,
             email
         });
         return res.status(200).json({
-            message: "user created",
-            data: created
+            message: password === adminPasword ? "Admin created" : "not an Admin",
+            data: password === adminPasword ? created : null
         });
     }
     catch (error) {

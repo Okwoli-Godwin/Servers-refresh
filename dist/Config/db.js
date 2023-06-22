@@ -16,6 +16,7 @@ exports.dbconnection = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const enviromentvariable_1 = require("../enviromentvariable/enviromentvariable");
 const URL = enviromentvariable_1.enviromentvariables.MONGODBCONNECT;
+const local = "mongodb://0.0.0.0:27017/uniabuja";
 const dbconnection = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const conn = yield mongoose_1.default.connect(URL);

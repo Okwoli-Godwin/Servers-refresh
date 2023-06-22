@@ -8,5 +8,6 @@ const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 exports.enviromentvariables = {
     PORT: process.env.PORT,
-    MONGODBCONNECT: process.env.MONGODBCONNECT
+    MONGODBCONNECT: process.env.MONGODBCONNECT,
+    Password: process.env.Password
 };
