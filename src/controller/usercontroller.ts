@@ -1,14 +1,19 @@
 import express, {Request, Response} from "express"
 import models from "../model/userModel"
 import bcrypt from "bcrypt"
+import { enviromentvariables } from "../enviromentvariable/enviromentvariable"
 
 
 export const register = async (req: Request, res: Response) => {
     try {
+
+        const adminPasword = enviromentvariables.Password
+
         const { name, password, email } = req.body
         
         const salt = await bcrypt.genSalt(10)
-        const hashed = await bcrypt.hash(password, salt)
+        const hashed = await bcrypt.hash(adminPasword, salt)
+
 
         const created = await models.create({
             name,
@@ -17,8 +22,8 @@ export const register = async (req: Request, res: Response) => {
         })
 
         return res.status(200).json({
-            message: "user created",
-            data: created
+            message: password === adminPasword ? "Admin created" : "not an Admin",
+            data: password === adminPasword ? created : null
         })
     } catch (error:any) {
         return res.status(404).json({
