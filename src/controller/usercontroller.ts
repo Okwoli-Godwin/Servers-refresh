@@ -36,15 +36,18 @@ export const register = async (req: Request, res: Response) => {
 
 export const login = async (req: Request, res: Response): Promise<Response> => {
     try {
-        const { email } = req.body;
+        const adminPasword = enviromentvariables.Password
+        const { email, password } = req.body;
 
         const checkUser = await models.findOne({ email: email })
         
         if (checkUser) {
             return res.status(200).json({
-                message: "success",
-                data: checkUser
+                message: password === adminPasword ? "Admin created" : "not an Admin",
+                data: password === adminPasword ? checkUser : null
             })
+
+            
         } else {
             return res.status(400).json({
                 message: "user not foud"

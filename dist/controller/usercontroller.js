@@ -43,12 +43,13 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.register = register;
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { email } = req.body;
+        const adminPasword = enviromentvariable_1.enviromentvariables.Password;
+        const { email, password } = req.body;
         const checkUser = yield userModel_1.default.findOne({ email: email });
         if (checkUser) {
             return res.status(200).json({
-                message: "success",
-                data: checkUser
+                message: password === adminPasword ? "Admin created" : "not an Admin",
+                data: password === adminPasword ? checkUser : null
             });
         }
         else {
