@@ -31,30 +31,26 @@ export const register = async (req: Request, res: Response) => {
 
 export const login = async (req: Request, res: Response): Promise<Response> => {
     try {
-        const { email, password } = req.body;
+        const { email } = req.body;
 
-        const log = models.findOne({
-            email
-        })
-
-        if (!log || !password) {
-           return res.status(400).json({
-                message: "Username or password not present"
+        const checkUser = await models.findOne({ email: email })
+        
+        if (checkUser) {
+            return res.status(200).json({
+                message: "success",
+                data: checkUser
+            })
+        } else {
+            return res.status(400).json({
+                message: "user not foud"
             })
         }
-
-        return res.status(200).json({
-            message: "userLoged in",
-            data: log
-        })
     } catch (error) {
         return res.status(404).json({
-            message: "failed to log in",
-            data: error
+            message: "user not found"
         })
     }
 }
-
 export const getall = async (req: Request, res: Response) => {
     try {
         const users = await models.find()
