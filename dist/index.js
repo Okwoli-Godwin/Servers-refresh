@@ -10,6 +10,9 @@ const enviromentvariable_1 = require("./enviromentvariable/enviromentvariable");
 const app = (0, express_1.default)();
 (0, app_1.appConfig)(app);
 (0, db_1.dbconnection)();
+app.get("/", (req, res) => {
+    res.send("server is working fine");
+});
 app.listen(enviromentvariable_1.enviromentvariables.PORT, () => {
     console.log("Server is up and running");
 });

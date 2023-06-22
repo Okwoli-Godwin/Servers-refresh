@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getall = exports.register = void 0;
+exports.getall = exports.login = exports.register = void 0;
 const userModel_1 = __importDefault(require("../model/userModel"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -39,6 +39,29 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.register = register;
+const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { email } = req.body;
+        const checkUser = yield userModel_1.default.findOne({ email: email });
+        if (checkUser) {
+            return res.status(200).json({
+                message: "success",
+                data: checkUser
+            });
+        }
+        else {
+            return res.status(400).json({
+                message: "user not foud"
+            });
+        }
+    }
+    catch (error) {
+        return res.status(404).json({
+            message: "user not found"
+        });
+    }
+});
+exports.login = login;
 const getall = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const users = yield userModel_1.default.find();
