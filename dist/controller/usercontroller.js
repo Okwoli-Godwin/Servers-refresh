@@ -19,13 +19,14 @@ const enviromentvariable_1 = require("../enviromentvariable/enviromentvariable")
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const adminPasword = enviromentvariable_1.enviromentvariables.Password;
-        const { name, password, email } = req.body;
+        const { name, password, email, isAdmin } = req.body;
         const salt = yield bcrypt_1.default.genSalt(10);
         const hashed = yield bcrypt_1.default.hash(adminPasword, salt);
         const created = yield userModel_1.default.create({
             name,
             password: hashed,
-            email
+            email,
+            isAdmin: false
         });
         return res.status(200).json({
             message: password === adminPasword ? "Admin created" : "not an Admin",

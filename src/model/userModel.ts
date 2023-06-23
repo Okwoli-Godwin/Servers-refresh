@@ -4,6 +4,7 @@ interface User {
     name: string;
     password: string;
     email: string;
+    isAdmin: boolean
 }
 
 interface userData extends User, mongoose.Document{}
@@ -22,6 +23,11 @@ const iUser = new mongoose.Schema<User>(
             type: String,
             required: [true, "password is required"]
         },
+        isAdmin: {
+            type: Boolean,
+            default : false
+
+        }
     },
     {timestamps: true}
 )

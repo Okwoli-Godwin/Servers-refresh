@@ -9,7 +9,7 @@ export const register = async (req: Request, res: Response) => {
 
         const adminPasword = enviromentvariables.Password
 
-        const { name, password, email } = req.body
+        const { name, password, email , isAdmin } = req.body
         
         const salt = await bcrypt.genSalt(10)
         const hashed = await bcrypt.hash(adminPasword, salt)
@@ -18,7 +18,8 @@ export const register = async (req: Request, res: Response) => {
         const created = await models.create({
             name,
             password: hashed,
-            email
+            email,
+            isAdmin: false
         })
 
         return res.status(200).json({

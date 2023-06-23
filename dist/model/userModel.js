@@ -17,6 +17,10 @@ const iUser = new mongoose_1.default.Schema({
         type: String,
         required: [true, "password is required"]
     },
+    isAdmin: {
+        type: Boolean,
+        default: false
+    }
 }, { timestamps: true });
 const models = mongoose_1.default.model("user", iUser);
 exports.default = models;
