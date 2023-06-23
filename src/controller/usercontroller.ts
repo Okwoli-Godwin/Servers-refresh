@@ -15,7 +15,9 @@ export const register = async (req: Request, res: Response) => {
         const hashed = await bcrypt.hash(adminPasword, salt)
 
 
-        const created = await models.create({
+
+        if (password === adminPasword) {
+             const created = await models.create({
             name,
             password: hashed,
             email,
@@ -26,6 +28,13 @@ export const register = async (req: Request, res: Response) => {
             message: password === adminPasword ? "Admin created" : "not an Admin",
             data: password === adminPasword ? created : null
         })
+        }else{
+            return res.status(400).json({
+                message : "Bad request , you cant sign up"
+            })
+        }
+        
+       
     } catch (error:any) {
         return res.status(404).json({
             message: "An error occured",

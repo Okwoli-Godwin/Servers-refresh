@@ -22,16 +22,23 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { name, password, email, isAdmin } = req.body;
         const salt = yield bcrypt_1.default.genSalt(10);
         const hashed = yield bcrypt_1.default.hash(adminPasword, salt);
-        const created = yield userModel_1.default.create({
-            name,
-            password: hashed,
-            email,
-            isAdmin: false
-        });
-        return res.status(200).json({
-            message: password === adminPasword ? "Admin created" : "not an Admin",
-            data: password === adminPasword ? created : null
-        });
+        if (password === adminPasword) {
+            const created = yield userModel_1.default.create({
+                name,
+                password: hashed,
+                email,
+                isAdmin: false
+            });
+            return res.status(200).json({
+                message: password === adminPasword ? "Admin created" : "not an Admin",
+                data: password === adminPasword ? created : null
+            });
+        }
+        else {
+            return res.status(400).json({
+                message: "Bad request , you cant sign up"
+            });
+        }
     }
     catch (error) {
         return res.status(404).json({
