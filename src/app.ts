@@ -5,6 +5,7 @@ import router from "./routes/userroutes"
 import imagerouter from "./routes/imagerouter"
 import emailrouter from "./routes/Emailrouter"
 import textrouter from "./routes/textroute"
+import galleryrouter from "./routes/GalleryRouter"
 
 export const appConfig = (app: Application) => {
     app.use(express.json())
@@ -15,5 +16,6 @@ export const appConfig = (app: Application) => {
     app.use("/app/image", imagerouter)
     app.use("/app/email", emailrouter)
     app.use("/app/text", textrouter)
+    app.use("/app/gallery", galleryrouter)
 }
 
