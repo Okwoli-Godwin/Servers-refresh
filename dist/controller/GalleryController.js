@@ -19,8 +19,9 @@ const Post = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     try {
         const cloudImg = yield ((_a = cloudinary_1.default.uploader) === null || _a === void 0 ? void 0 : _a.upload(req === null || req === void 0 ? void 0 : req.file.path));
+        // const { Image } = req.body;
         const newfile = yield Gallerymodel_1.default.create({
-            Image: cloudImg.secure_url,
+            GalleryImage: cloudImg.secure_url,
         });
         return res.status(201).json({
             message: "image uploaded",

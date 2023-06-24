@@ -2,6 +2,7 @@ import multer from "multer"
 import { Request } from "express"
 import path from "path"
 
+
 type DestinationCallback = (error: Error | null, destination: string) => void;
 type FilenameCallback = (error: Error | null, filename: string) => void;
 
@@ -11,7 +12,7 @@ const Storage = multer.diskStorage({
     file: Express.Multer.File,
     cb: DestinationCallback
   ) => {
-    cb(null, path.join(__dirname, "../../upload"));
+    cb(null, path.join(__dirname, "../../Uploads"));
   },
 
   filename: (req: Request, file: Express.Multer.File, cb: FilenameCallback) => {
@@ -23,6 +24,6 @@ const Storage = multer.diskStorage({
   },
 });
 
-const coverUpload = multer({ storage: Storage }).single("GalleryImage");
+const Upload = multer({ storage: Storage }).single("GalleryImage");
 
-export { coverUpload };
+export { Upload };

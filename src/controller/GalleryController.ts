@@ -4,10 +4,11 @@ import cloudinary from "../Config/cloudinary"
 
 export const Post = async (req: Request, res: Response): Promise<Response> => {
     try {
-        const cloudImg = await cloudinary.uploader?.upload(req?.file!.path)
+        const cloudImg = await cloudinary.uploader?.upload(req?.file!.path);
 
+        // const { Image } = req.body;
         const newfile = await Gallerymodel.create({
-            Image: cloudImg.secure_url,
+            GalleryImage: cloudImg.secure_url,
         })
 
         return res.status(201).json({

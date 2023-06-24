@@ -1,14 +1,14 @@
 import mongoose from "mongoose";
 
 interface imageData{
-    Image: string
+    GalleryImage: string
 }
 
 interface images extends imageData, mongoose.Document{ }
 
 const imageupload = new mongoose.Schema<imageData>(
     {
-        Image: {
+        GalleryImage: {
             type: String
         }
     },
