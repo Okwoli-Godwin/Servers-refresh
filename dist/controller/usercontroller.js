@@ -27,16 +27,16 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 name,
                 password: hashed,
                 email,
-                isAdmin: false
+                isAdmin: false,
             });
             return res.status(200).json({
                 message: password === adminPasword ? "Admin created" : "not an Admin",
-                data: password === adminPasword ? created : null
+                data: password === adminPasword ? created : null,
             });
         }
         else {
             return res.status(400).json({
-                message: "Bad request , you cant sign up"
+                message: "Bad request , you cant sign up",
             });
         }
     }
@@ -44,7 +44,7 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         return res.status(404).json({
             message: "An error occured",
             data: error,
-            err: error.message
+            err: error.message,
         });
     }
 });
@@ -57,18 +57,18 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         if (checkUser) {
             return res.status(200).json({
                 message: password === adminPasword ? "Admin created" : "not an Admin",
-                data: password === adminPasword ? checkUser : null
+                data: password === adminPasword ? checkUser : null,
             });
         }
         else {
             return res.status(400).json({
-                message: "user not foud"
+                message: "user not foud",
             });
         }
     }
     catch (error) {
         return res.status(404).json({
-            message: "user not found"
+            message: "user not found",
         });
     }
 });
@@ -78,12 +78,12 @@ const getall = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const users = yield userModel_1.default.find();
         return res.status(200).json({
             message: "users gotten",
-            data: users
+            data: users,
         });
     }
     catch (error) {
         return res.status(404).json({
-            message: "no users"
+            message: "no users",
         });
     }
 });
