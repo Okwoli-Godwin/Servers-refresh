@@ -12,24 +12,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.update = exports.post = void 0;
+exports.getData = exports.update = exports.post = void 0;
 const textmodel_1 = __importDefault(require("../model/textmodel"));
 const post = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { writeups, button } = req.body;
         const newtext = yield textmodel_1.default.create({
             writeups,
-            button
+            button,
         });
         return res.status(200).json({
             message: "texts posted",
-            data: newtext
+            data: newtext,
         });
     }
     catch (error) {
         return res.status(404).json({
             message: "failed to post texts",
-            data: error
+            data: error,
         });
     }
 });
@@ -41,14 +41,30 @@ const update = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const update = yield textmodel_1.default.findByIdAndUpdate(gettexts === null || gettexts === void 0 ? void 0 : gettexts._id, { writeups, button }, { new: true });
         return res.status(201).json({
             message: "texts updated",
-            data: update
+            data: update,
         });
     }
     catch (error) {
         return res.status(404).json({
             message: "failed to update text",
-            data: error
+            data: error,
         });
     }
 });
 exports.update = update;
+const getData = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const getText = yield textmodel_1.default.find();
+        return res.status(200).json({
+            message: "Data Successfully gotton",
+            data: getText,
+        });
+    }
+    catch (error) {
+        res.status(400).json({
+            message: "An error occured in getData",
+            error: error,
+        });
+    }
+});
+exports.getData = getData;
