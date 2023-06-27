@@ -18,7 +18,6 @@ const imageupload = new mongoose.Schema<imageData>(
         },
         coverImage: {
             type: String,
-            required: [true, "image is required"]
         },
         name: {
             type: String,
