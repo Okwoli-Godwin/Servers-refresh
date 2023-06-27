@@ -15,5 +15,5 @@ app.get("/", (req: Request, res: Response) => {
   });``
 
 app.listen(enviromentvariables.PORT, () => {
-    console.log("Server is up and running")
+    console.log("Server is up and running", enviromentvariables.PORT);
 })
