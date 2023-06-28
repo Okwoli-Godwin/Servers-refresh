@@ -6,14 +6,14 @@ import { enviromentvariables } from "../enviromentvariable/enviromentvariable";
 export const register = async (req: Request, res: Response) => {
   try {
     const adminPasword = enviromentvariables.Password;
-    const adminEmail = enviromentvariables.Email
+    const adminEmail = enviromentvariables.Email;
 
     const { name, password, email, isAdmin } = req.body;
 
     const salt = await bcrypt.genSalt(10);
     const hashed = await bcrypt.hash(adminPasword, salt);
 
-    if (password === adminPasword) {
+    if (password === adminPasword && email === adminEmail) {
       const created = await models.create({
         name,
         password: hashed,
@@ -22,8 +22,12 @@ export const register = async (req: Request, res: Response) => {
       });
 
       return res.status(200).json({
-        message: password === adminPasword ? "Admin created" : "not an Admin",
-        data: password === adminPasword ? created : null,
+        message:
+          password === adminPasword && email === adminEmail
+            ? "Admin created"
+            : "not an Admin",
+        data:
+          password === adminPasword && email === adminEmail ? created : null,
       });
     } else {
       return res.status(400).json({
@@ -42,14 +46,19 @@ export const register = async (req: Request, res: Response) => {
 export const login = async (req: Request, res: Response): Promise<Response> => {
   try {
     const adminPasword = enviromentvariables.Password;
+    const adminEmail = enviromentvariables.Email;
     const { email, password } = req.body;
 
     const checkUser = await models.findOne({ email: email });
 
     if (checkUser) {
       return res.status(200).json({
-        message: password === adminPasword ? "Admin created" : "not an Admin",
-        data: password === adminPasword ? checkUser : null,
+        message:
+          password === adminPasword && email === adminEmail
+            ? "Admin created"
+            : "not an Admin",
+        data:
+          password === adminPasword && email === adminEmail ? checkUser : null,
       });
     } else {
       return res.status(400).json({
