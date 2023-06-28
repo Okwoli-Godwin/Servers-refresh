@@ -96,17 +96,12 @@ export const deleteimage = async (
   res: Response
 ): Promise<Response> => {
   try {
-    const { course, name, section, summary } = req.body;
-
     const getAdmin = await models.findById(req.params.adminId);
 
     if (getAdmin?.isAdmin === true) {
-      const deleteimage = await imagemodel.findByIdAndRemove(req.params.id, {
-        course,
-        name,
-        section,
-        summary,
-      });
+      const deleteimage = await imagemodel.findByIdAndDelete(
+        req.params.imageId
+      );
 
       return res.status(201).json({
         message: "image deleted",

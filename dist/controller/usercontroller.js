@@ -61,7 +61,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         if (checkUser) {
             return res.status(200).json({
                 message: password === adminPasword && email === adminEmail
-                    ? "Admin created"
+                    ? "Successfully Login"
                     : "not an Admin",
                 data: password === adminPasword && email === adminEmail ? checkUser : null,
             });
