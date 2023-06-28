@@ -52,6 +52,7 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
     const checkUser = await models.findOne({ email: email });
 
     if (checkUser) {
+      await models.findByIdAndUpdate(checkUser?._id, { isAdmin: true });
       return res.status(200).json({
         message:
           password === adminPasword && email === adminEmail
