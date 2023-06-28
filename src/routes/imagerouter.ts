@@ -8,6 +8,6 @@ imagerouter.route("/post").post(coverUpload, newpost)
 imagerouter.route("/getall").get(getimages)
 imagerouter.route("/oneimage/:id").get(getoneimage)
 imagerouter.route("/update/:imageId").patch(updateimage)
-imagerouter.route("/delete/:id").delete(deleteimage)
+imagerouter.route("/delete/:adminId/:id").delete(deleteimage);
 
 export default imagerouter
