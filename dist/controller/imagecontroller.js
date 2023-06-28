@@ -93,15 +93,9 @@ const updateimage = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 exports.updateimage = updateimage;
 const deleteimage = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { course, name, section, summary } = req.body;
         const getAdmin = yield userModel_1.default.findById(req.params.adminId);
         if ((getAdmin === null || getAdmin === void 0 ? void 0 : getAdmin.isAdmin) === true) {
-            const deleteimage = yield imagemodel_1.default.findByIdAndRemove(req.params.id, {
-                course,
-                name,
-                section,
-                summary,
-            });
+            const deleteimage = yield imagemodel_1.default.findByIdAndDelete(req.params.imageId);
             return res.status(201).json({
                 message: "image deleted",
             });
