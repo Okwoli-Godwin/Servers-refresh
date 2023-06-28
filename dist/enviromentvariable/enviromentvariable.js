@@ -9,5 +9,6 @@ dotenv_1.default.config();
 exports.enviromentvariables = {
     PORT: process.env.PORT,
     MONGODBCONNECT: process.env.MONGODBCONNECT,
-    Password: process.env.Password
+    Password: process.env.Password,
+    Email: process.env.Email
 };
