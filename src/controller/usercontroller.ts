@@ -6,6 +6,7 @@ import { enviromentvariables } from "../enviromentvariable/enviromentvariable";
 export const register = async (req: Request, res: Response) => {
   try {
     const adminPasword = enviromentvariables.Password;
+    const adminEmail = enviromentvariables.Email
 
     const { name, password, email, isAdmin } = req.body;
 
