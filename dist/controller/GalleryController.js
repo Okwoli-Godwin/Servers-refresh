@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getimages = exports.Post = void 0;
+exports.deleteimage = exports.getimages = exports.Post = void 0;
 const Gallerymodel_1 = __importDefault(require("../model/Gallerymodel"));
 const cloudinary_1 = __importDefault(require("../Config/cloudinary"));
 const Post = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -52,3 +52,20 @@ const getimages = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.getimages = getimages;
+const deleteimage = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { GalleryImage } = req.body;
+        const deleteimage = yield Gallerymodel_1.default.findByIdAndRemove(req.params.id, { GalleryImage });
+        return res.status(201).json({
+            message: "image deleted",
+            data: deleteimage
+        });
+    }
+    catch (error) {
+        return res.status(400).json({
+            message: "image failed to delete",
+            data: error.message
+        });
+    }
+});
+exports.deleteimage = deleteimage;

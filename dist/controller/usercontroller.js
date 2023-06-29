@@ -19,6 +19,7 @@ const enviromentvariable_1 = require("../enviromentvariable/enviromentvariable")
 const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const adminPasword = enviromentvariable_1.enviromentvariables.Password;
+        const adminEmail = enviromentvariable_1.enviromentvariables.Email;
         const { name, password, email, isAdmin } = req.body;
         const salt = yield bcrypt_1.default.genSalt(10);
         const hashed = yield bcrypt_1.default.hash(adminPasword, salt);

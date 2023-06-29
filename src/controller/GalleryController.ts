@@ -38,3 +38,22 @@ export const getimages = async (req: Request, res: Response): Promise<Response> 
         })
     }
 }
+
+export const deleteimage = async (req: Request, res: Response): Promise<Response> => {
+    try {
+        const {GalleryImage} = req.body;
+        const deleteimage = await Gallerymodel.findByIdAndRemove(
+            req.params.id, {GalleryImage}
+        )
+
+        return res.status(201).json({
+            message: "image deleted",
+            data: deleteimage
+        })
+    } catch (error:any) {
+        return res.status(400).json({
+            message: "image failed to delete",
+            data: error.message
+        })
+    }
+}

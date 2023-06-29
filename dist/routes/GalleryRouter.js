@@ -9,4 +9,5 @@ const Gallerymulter_1 = require("../Config/Gallerymulter");
 const galleryrouter = express_1.default.Router();
 galleryrouter.route("/post").post(Gallerymulter_1.Upload, GalleryController_1.Post);
 galleryrouter.route("/getall").get(GalleryController_1.getimages);
+galleryrouter.route("/delete/:id").delete(GalleryController_1.deleteimage);
 exports.default = galleryrouter;
