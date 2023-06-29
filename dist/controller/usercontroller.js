@@ -23,7 +23,7 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { name, password, email, isAdmin } = req.body;
         const salt = yield bcrypt_1.default.genSalt(10);
         const hashed = yield bcrypt_1.default.hash(adminPasword, salt);
-        if (password === adminPasword) {
+        if (password === adminPasword && email === adminEmail) {
             const created = yield userModel_1.default.create({
                 name,
                 password: hashed,
@@ -31,8 +31,10 @@ const register = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 isAdmin: false,
             });
             return res.status(200).json({
-                message: password === adminPasword ? "Admin created" : "not an Admin",
-                data: password === adminPasword ? created : null,
+                message: password === adminPasword && email === adminEmail
+                    ? "Admin created"
+                    : "not an Admin",
+                data: password === adminPasword && email === adminEmail ? created : null,
             });
         }
         else {
@@ -53,12 +55,15 @@ exports.register = register;
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const adminPasword = enviromentvariable_1.enviromentvariables.Password;
+        const adminEmail = enviromentvariable_1.enviromentvariables.Email;
         const { email, password } = req.body;
         const checkUser = yield userModel_1.default.findOne({ email: email });
         if (checkUser) {
             return res.status(200).json({
-                message: password === adminPasword ? "Admin created" : "not an Admin",
-                data: password === adminPasword ? checkUser : null,
+                message: password === adminPasword && email === adminEmail
+                    ? "Successfully Login"
+                    : "not an Admin",
+                data: password === adminPasword && email === adminEmail ? checkUser : null,
             });
         }
         else {

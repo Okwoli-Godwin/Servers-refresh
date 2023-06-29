@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteimage = exports.updateimage = exports.getoneimage = exports.getimages = exports.newpost = void 0;
 const imagemodel_1 = __importDefault(require("../model/imagemodel"));
+const userModel_1 = __importDefault(require("../model/userModel"));
 const cloudinary_1 = __importDefault(require("../Config/cloudinary"));
 const newpost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
@@ -25,17 +26,17 @@ const newpost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             name,
             coverImage: cloudImg.secure_url,
             section,
-            summary
+            summary,
         });
         return res.status(201).json({
             message: "image uploaded",
-            data: newfile
+            data: newfile,
         });
     }
     catch (error) {
         return res.status(400).json({
             message: "failed to upload image",
-            data: error.message
+            data: error.message,
         });
     }
 });
@@ -45,13 +46,13 @@ const getimages = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const getpost = yield imagemodel_1.default.find();
         return res.status(201).json({
             message: "images gotten successfully",
-            data: getpost
+            data: getpost,
         });
     }
     catch (error) {
         return res.status(400).json({
             message: "Failed to get images",
-            data: error.message
+            data: error.message,
         });
     }
 });
@@ -61,13 +62,13 @@ const getoneimage = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         const getone = yield imagemodel_1.default.findById(req.params.id);
         return res.status(201).json({
             message: "one image gotten",
-            data: getone
+            data: getone,
         });
     }
     catch (error) {
         return res.status(400).json({
             message: "Failed to get image",
-            data: error.message
+            data: error.message,
         });
     }
 });
@@ -79,30 +80,36 @@ const updateimage = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         const update = yield imagemodel_1.default.findByIdAndUpdate(getImage === null || getImage === void 0 ? void 0 : getImage._id, { course, name, section, summary }, { new: true });
         return res.status(201).json({
             message: "image updated",
-            data: update
+            data: update,
         });
     }
     catch (error) {
         return res.status(400).json({
             message: "failed to update",
-            data: error.message
+            data: error.message,
         });
     }
 });
 exports.updateimage = updateimage;
 const deleteimage = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { course, name, section, summary } = req.body;
-        const deleteimage = yield imagemodel_1.default.findByIdAndRemove(req.params.id, { course, name, section, summary });
-        return res.status(201).json({
-            message: "image deleted",
-            data: deleteimage
-        });
+        const getAdmin = yield userModel_1.default.findById(req.params.adminId);
+        if ((getAdmin === null || getAdmin === void 0 ? void 0 : getAdmin.isAdmin) === true) {
+            const deleteimage = yield imagemodel_1.default.findByIdAndDelete(req.params.imageId);
+            return res.status(201).json({
+                message: "image deleted",
+            });
+        }
+        else {
+            return res.status(201).json({
+                message: "Can't delete this Image",
+            });
+        }
     }
     catch (error) {
         return res.status(400).json({
             message: "image failed to delete",
-            data: error.message
+            data: error.message,
         });
     }
 });

@@ -11,5 +11,5 @@ imagerouter.route("/post").post(multer_1.coverUpload, imagecontroller_1.newpost)
 imagerouter.route("/getall").get(imagecontroller_1.getimages);
 imagerouter.route("/oneimage/:id").get(imagecontroller_1.getoneimage);
 imagerouter.route("/update/:imageId").patch(imagecontroller_1.updateimage);
-imagerouter.route("/delete/:id").delete(imagecontroller_1.deleteimage);
+imagerouter.route("/delete/:adminId/:imageId").delete(imagecontroller_1.deleteimage);
 exports.default = imagerouter;
