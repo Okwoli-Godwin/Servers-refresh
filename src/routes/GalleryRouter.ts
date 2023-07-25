@@ -9,3 +9,5 @@ galleryrouter.route("/getall").get(getimages)
 galleryrouter.route("/delete/:id").delete(deleteimage)
 
 export default galleryrouter
+
+
