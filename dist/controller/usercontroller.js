@@ -59,6 +59,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const { email, password } = req.body;
         const checkUser = yield userModel_1.default.findOne({ email: email });
         if (checkUser) {
+            yield userModel_1.default.findByIdAndUpdate(checkUser === null || checkUser === void 0 ? void 0 : checkUser._id, { isAdmin: true });
             return res.status(200).json({
                 message: password === adminPasword && email === adminEmail
                     ? "Successfully Login"
