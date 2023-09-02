@@ -4,6 +4,7 @@ import cloudinary from "../Config/cloudinary";
 
 export const Post = async (req: Request, res: Response): Promise<Response> => {
     try {
+        const { namepdf } = req.body;
         if (!req.file || !req.file.path) {
             return res.status(400).json({
                 message: "No PDF file provided.",
@@ -14,10 +15,12 @@ export const Post = async (req: Request, res: Response): Promise<Response> => {
             resource_type: "auto", // This sets the resource type to "auto" to detect the file type automatically
             format: "pdf", // You can also set a specific format to ensure it's treated as a PDF
         });
+        
 
         // Assuming you have a field called PDFFile in your model to store the PDF URL from Cloudinary
         const newFile = await PDFModel.create({
             PDFFile: cloudPdf.secure_url,
+            namepdf
         });
 
         return res.status(201).json({
