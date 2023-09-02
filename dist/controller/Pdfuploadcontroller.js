@@ -26,8 +26,11 @@ const Post = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             resource_type: "auto",
             format: "pdf", // You can also set a specific format to ensure it's treated as a PDF
         });
+        const { namepdf } = req.body;
+        console.log("namepdf", namepdf);
         // Assuming you have a field called PDFFile in your model to store the PDF URL from Cloudinary
         const newFile = yield Pdfuploadmodel_1.default.create({
+            namepdf,
             PDFFile: cloudPdf.secure_url,
         });
         return res.status(201).json({

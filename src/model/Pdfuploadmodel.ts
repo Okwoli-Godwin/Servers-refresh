@@ -21,6 +21,6 @@ const pdfUploadSchema = new mongoose.Schema<PDFData>(
     { timestamps: true }
 );
 
-const PDFModel = mongoose.model<PDFModel>("PDF", pdfUploadSchema);
+const PDFModel = mongoose.model<PDFModel>("PDFs", pdfUploadSchema);
 
 export default PDFModel;

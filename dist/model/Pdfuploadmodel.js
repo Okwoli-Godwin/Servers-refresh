@@ -8,7 +8,11 @@ const pdfUploadSchema = new mongoose_1.default.Schema({
     PDFFile: {
         type: String,
         required: true,
+    },
+    namepdf: {
+        type: String,
+        required: true
     }
 }, { timestamps: true });
-const PDFModel = mongoose_1.default.model("PDF", pdfUploadSchema);
+const PDFModel = mongoose_1.default.model("PDFs", pdfUploadSchema);
 exports.default = PDFModel;
