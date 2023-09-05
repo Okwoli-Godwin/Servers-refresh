@@ -3,6 +3,7 @@ import path from "path";
 import { Express } from "express";
 import { Request } from "express";
 
+
 type DestinationCallback = (error: Error | null, destination: string) => void;
 type FilenameCallback = (error: Error | null, filename: string) => void;
 
@@ -16,11 +17,8 @@ const Storage = multer.diskStorage({
   },
 
   filename: (req: Request, file: Express.Multer.File, cb: FilenameCallback) => {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(
-      null,
-      file.fieldname + "-" + uniqueSuffix + path.extname(file.originalname)
-    );
+    // Keep the original file name
+    cb(null, file.originalname);
   },
 });
 
@@ -42,5 +40,4 @@ const PdfUpload = multer({
   storage: Storage,
   fileFilter: fileFilter, // Add the file filter for PDF files
 }).single("PDFFile");
-
 export { PdfUpload };

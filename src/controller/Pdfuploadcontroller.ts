@@ -13,16 +13,25 @@ export const Post = async (req: Request, res: Response): Promise<Response> => {
         }
 
         const cloudPdf = await cloudinary.uploader.upload(req.file.path, {
-            resource_type: "auto", // This sets the resource type to "auto" to detect the file type automatically
-            format: "pdf", // You can also set a specific format to ensure it's treated as a PDF
+            resource_type: "auto",
+            folder: "pdfs",
+            format: "pdf",
+            public_id: req.file.originalname,
+            overwrite: true
         });
+
+        const cloudinaryUrl = cloudinary.url(cloudPdf.public_id, {
+            secure: true,
+            resource_type: "raw"
+        })
+
+        const {namepdf} = req.body;
         
-        const { namepdf } = req.body;
         console.log("namepdf", namepdf)
         // Assuming you have a field called PDFFile in your model to store the PDF URL from Cloudinary
         const newFile = await PDFModel.create({
             namepdf,
-            PDFFile: cloudPdf.secure_url,
+            PDFFile: cloudinaryUrl,
             
         });
 
