@@ -24,14 +24,21 @@ const Post = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         }
         const cloudPdf = yield cloudinary_1.default.uploader.upload(req.file.path, {
             resource_type: "auto",
-            format: "pdf", // You can also set a specific format to ensure it's treated as a PDF
+            folder: "pdfs",
+            format: "pdf",
+            public_id: req.file.originalname,
+            overwrite: true
+        });
+        const cloudinaryUrl = cloudinary_1.default.url(cloudPdf.public_id, {
+            secure: true,
+            resource_type: "raw"
         });
         const { namepdf } = req.body;
         console.log("namepdf", namepdf);
         // Assuming you have a field called PDFFile in your model to store the PDF URL from Cloudinary
         const newFile = yield Pdfuploadmodel_1.default.create({
             namepdf,
-            PDFFile: cloudPdf.secure_url,
+            PDFFile: cloudinaryUrl,
         });
         return res.status(201).json({
             message: "PDF uploaded",

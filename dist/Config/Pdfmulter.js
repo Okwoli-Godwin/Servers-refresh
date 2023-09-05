@@ -11,8 +11,8 @@ const Storage = multer_1.default.diskStorage({
         cb(null, path_1.default.join(__dirname, "../../uploads"));
     },
     filename: (req, file, cb) => {
-        const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-        cb(null, file.fieldname + "-" + uniqueSuffix + path_1.default.extname(file.originalname));
+        // Keep the original file name
+        cb(null, file.originalname);
     },
 });
 const fileFilter = (req, file, cb) => {
