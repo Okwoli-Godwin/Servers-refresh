@@ -15,7 +15,6 @@ export const Post = async (req: Request, res: Response): Promise<Response> => {
         const cloudPdf = await cloudinary.uploader.upload(req.file.path, {
             resource_type: "auto",
             format: "pdf",
-            foder: "pdfs",
             public_id: req.file.originalname,
             overwrite: true
         });
