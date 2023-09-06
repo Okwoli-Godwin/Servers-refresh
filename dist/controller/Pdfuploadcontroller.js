@@ -24,14 +24,13 @@ const Post = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         }
         const cloudPdf = yield cloudinary_1.default.uploader.upload(req.file.path, {
             resource_type: "auto",
-            folder: "pdfs",
             format: "pdf",
             public_id: req.file.originalname,
             overwrite: true
         });
-        const cloudinaryUrl = cloudinary_1.default.url(cloudPdf.public_id, {
+        const cloudinaryUrl = cloudinary_1.default.url(encodeURIComponent(cloudPdf.public_id), {
             secure: true,
-            resource_type: "raw"
+            resource_type: 'raw'
         });
         const { namepdf } = req.body;
         console.log("namepdf", namepdf);
