@@ -6,7 +6,7 @@ const local = "mongodb://0.0.0.0:27017/uniabuja";
 
 export const dbconnection = async () => {
   try {
-    const conn = await mongoose.connect(URL);
+    const conn = await mongoose.connect(local);
     if (mongoose.connection.host === "localhost") {
       console.log("connected to localhost");
     } else {

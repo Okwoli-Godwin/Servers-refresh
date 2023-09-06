@@ -8,7 +8,7 @@ const multer_1 = __importDefault(require("multer"));
 const path_1 = __importDefault(require("path"));
 const Storage = multer_1.default.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, path_1.default.join(__dirname, "../../uploads"));
+        cb(null, path_1.default.join(__dirname, "../uploads"));
     },
     filename: (req, file, cb) => {
         // Keep the original file name
