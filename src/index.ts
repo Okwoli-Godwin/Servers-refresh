@@ -8,6 +8,7 @@ const app: Application = express()
 appConfig(app)
 dbconnection()
 
+
 app.get("/", (req: Request, res: Response) => {
     return res.status(200).json({
       message: "API READY FOR Uni_Abuja CUR PROJECT",

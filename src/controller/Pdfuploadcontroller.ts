@@ -21,7 +21,7 @@ export const Post = async (req: Request, res: Response): Promise<Response> => {
 
         const cloudinaryUrl = cloudinary.url(encodeURIComponent(cloudPdf.public_id), {
             secure: true,
-            resource_type: 'raw'
+           
         })
 
         const {namepdf} = req.body;
@@ -30,7 +30,7 @@ export const Post = async (req: Request, res: Response): Promise<Response> => {
         // Assuming you have a field called PDFFile in your model to store the PDF URL from Cloudinary
         const newFile = await PDFModel.create({
             namepdf,
-            PDFFile: cloudinaryUrl,
+            PDFFile: cloudPdf.secure_url,
             
         });
 
