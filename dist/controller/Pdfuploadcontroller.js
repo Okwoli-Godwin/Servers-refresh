@@ -25,6 +25,7 @@ const Post = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         const cloudPdf = yield cloudinary_1.default.uploader.upload(req.file.path, {
             resource_type: "auto",
             format: "pdf",
+            foder: "pdfs",
             public_id: req.file.originalname,
             overwrite: true
         });
