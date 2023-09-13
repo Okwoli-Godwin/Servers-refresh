@@ -19,7 +19,7 @@ const URL = enviromentvariable_1.enviromentvariables.MONGODBCONNECT;
 const local = "mongodb://0.0.0.0:27017/uniabuja";
 const dbconnection = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const conn = yield mongoose_1.default.connect(local);
+        const conn = yield mongoose_1.default.connect(URL);
         if (mongoose_1.default.connection.host === "localhost") {
             console.log("connected to localhost");
         }
