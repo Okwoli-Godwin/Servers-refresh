@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.resetPassword = exports.emailEnv = void 0;
+exports.resetPassword = exports.colaboratoremailEnv = void 0;
 const googleapis_1 = require("googleapis");
 const nodemailer_1 = __importDefault(require("nodemailer"));
 const GOOGLE_ID = "730919110921-2rl40ck7dnkhc4gm1idq7599rb29ubj5.apps.googleusercontent.com ";
@@ -20,7 +20,7 @@ const GOOGLE_SECRET = "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";
 const GOOGLE_REFRESHTOKEN = "1//04g38ARY8A7ZFCgYIARAAGAQSNwF-L9IrRTtHoZvmgrCbFK7P5_FlFY0WXB4LTHHolfiaPUcv7mKis_njZJ_m1QWiLbouBne04aA";
 const GOOGLE_REDIRECT = "https://developers.google.com/oauthplayground/";
 const oAuth = new googleapis_1.google.auth.OAuth2(GOOGLE_ID, GOOGLE_SECRET, GOOGLE_REDIRECT);
-const emailEnv = (sender) => __awaiter(void 0, void 0, void 0, function* () {
+const colaboratoremailEnv = (sender) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         oAuth.setCredentials({ access_token: GOOGLE_REFRESHTOKEN });
         const getToken = (yield oAuth.getAccessToken()).token;
@@ -40,18 +40,24 @@ const emailEnv = (sender) => __awaiter(void 0, void 0, void 0, function* () {
         const mailerOption = {
             from: `${sender === null || sender === void 0 ? void 0 : sender.email}<${receiverEmail}>`,
             to: receiverEmail,
-            subject: "Account verification",
+            subject: "Need a Research Collaborator",
             html: `<!doctype html>
     <html>
       <head>
         <meta charset="utf-8">
-     <title>Account Verification Email</title>
+     <title>Need a Research Collaborator</title>
       </head>
       <body>
   
         <h3>From ${sender === null || sender === void 0 ? void 0 : sender.name}</h3>
-		<p>Subject Title : ${sender === null || sender === void 0 ? void 0 : sender.title}</p><br/>
-        <h5>${sender === null || sender === void 0 ? void 0 : sender.subject}</h5>
+        <br>
+		<h4>Department : ${sender === null || sender === void 0 ? void 0 : sender.department}</h4>
+        <h4>Level : ${sender === null || sender === void 0 ? void 0 : sender.level}</h4>
+        <h4>phoneNumber : ${sender === null || sender === void 0 ? void 0 : sender.phoneNumber}</h4>
+        <h4>ResearchTopic ${sender === null || sender === void 0 ? void 0 : sender.ResearchTopic}</h5>
+		<br/>
+		<br/>
+		<br/>
 		<br/>
 		<div>Thanks ,</div>
 		
@@ -71,7 +77,7 @@ const emailEnv = (sender) => __awaiter(void 0, void 0, void 0, function* () {
         console.log(error);
     }
 });
-exports.emailEnv = emailEnv;
+exports.colaboratoremailEnv = colaboratoremailEnv;
 const resetPassword = (user) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         oAuth.setCredentials({ access_token: GOOGLE_REFRESHTOKEN });

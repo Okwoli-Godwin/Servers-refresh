@@ -7,6 +7,7 @@ import emailrouter from "./routes/Emailrouter"
 import textrouter from "./routes/textroute"
 import galleryrouter from "./routes/GalleryRouter"
 import pdfrouter from "./routes/Pdfrouter"
+import collaboratoremailrouter from "./routes/collaboratorrouter"
 import { PdfUpload } from "./Config/Pdfmulter"
 
 export const appConfig = (app: Application) => {
@@ -20,5 +21,6 @@ export const appConfig = (app: Application) => {
     app.use("/app/text", textrouter)
     app.use("/app/gallery", galleryrouter)
     app.use("/app/pdf", pdfrouter)
+    app.use("/app/collaborator", collaboratoremailrouter)
 }
 

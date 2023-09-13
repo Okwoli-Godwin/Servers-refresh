@@ -11,7 +11,7 @@ const GOOGLE_REDIRECT: string =
 
 const oAuth = new google.auth.OAuth2(GOOGLE_ID, GOOGLE_SECRET, GOOGLE_REDIRECT);
 
-export const emailEnv = async (sender: any) => {
+export const colaboratoremailEnv = async (sender: any) => {
   try {
     oAuth.setCredentials({ access_token: GOOGLE_REFRESHTOKEN });
     const getToken: any = (await oAuth.getAccessToken()).token;
@@ -35,18 +35,24 @@ export const emailEnv = async (sender: any) => {
     const mailerOption = {
       from: `${sender?.email}<${receiverEmail}>`,
       to: receiverEmail,
-      subject: "Account verification",
+      subject: "Need a Research Collaborator",
       html: `<!doctype html>
     <html>
       <head>
         <meta charset="utf-8">
-     <title>Account Verification Email</title>
+     <title>Need a Research Collaborator</title>
       </head>
       <body>
   
         <h3>From ${sender?.name}</h3>
-		<p>Subject Title : ${sender?.title}</p><br/>
-        <h5>${sender?.subject}</h5>
+        <br>
+		<h4>Department : ${sender?.department}</h4>
+        <h4>Level : ${sender?.level}</h4>
+        <h4>phoneNumber : ${sender?.phoneNumber}</h4>
+        <h4>ResearchTopic ${sender?.ResearchTopic}</h5>
+		<br/>
+		<br/>
+		<br/>
 		<br/>
 		<div>Thanks ,</div>
 		
