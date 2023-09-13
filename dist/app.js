@@ -17,6 +17,7 @@ const collaboratorrouter_1 = __importDefault(require("./routes/collaboratorroute
 const mentorrouter_1 = __importDefault(require("./routes/mentorrouter"));
 const proposalrouter_1 = __importDefault(require("./routes/proposalrouter"));
 const presentationrouter_1 = __importDefault(require("./routes/presentationrouter"));
+const menteerouter_1 = __importDefault(require("./routes/menteerouter"));
 const appConfig = (app) => {
     app.use(express_1.default.json())
         .use((0, cors_1.default)())
@@ -31,5 +32,6 @@ const appConfig = (app) => {
     app.use("/app/mentor", mentorrouter_1.default);
     app.use("/app/proposal", proposalrouter_1.default);
     app.use("/app/presentation", presentationrouter_1.default);
+    app.use("/app/mentee", menteerouter_1.default);
 };
 exports.appConfig = appConfig;
