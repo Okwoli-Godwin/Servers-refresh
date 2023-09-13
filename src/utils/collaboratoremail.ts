@@ -46,10 +46,10 @@ export const colaboratoremailEnv = async (sender: any) => {
   
         <h3>From ${sender?.name}</h3>
         <br>
-		<h4>Department : ${sender?.department}</h4>
+		  <h4>Department : ${sender?.department}</h4>
         <h4>Level : ${sender?.level}</h4>
         <h4>phoneNumber : ${sender?.phoneNumber}</h4>
-        <h4>ResearchTopic ${sender?.ResearchTopic}</h5>
+        <h4>ResearchTopic : ${sender?.ResearchTopic}</h5>
 		<br/>
 		<br/>
 		<br/>

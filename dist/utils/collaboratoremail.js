@@ -51,10 +51,10 @@ const colaboratoremailEnv = (sender) => __awaiter(void 0, void 0, void 0, functi
   
         <h3>From ${sender === null || sender === void 0 ? void 0 : sender.name}</h3>
         <br>
-		<h4>Department : ${sender === null || sender === void 0 ? void 0 : sender.department}</h4>
+		  <h4>Department : ${sender === null || sender === void 0 ? void 0 : sender.department}</h4>
         <h4>Level : ${sender === null || sender === void 0 ? void 0 : sender.level}</h4>
         <h4>phoneNumber : ${sender === null || sender === void 0 ? void 0 : sender.phoneNumber}</h4>
-        <h4>ResearchTopic ${sender === null || sender === void 0 ? void 0 : sender.ResearchTopic}</h5>
+        <h4>ResearchTopic : ${sender === null || sender === void 0 ? void 0 : sender.ResearchTopic}</h5>
 		<br/>
 		<br/>
 		<br/>
