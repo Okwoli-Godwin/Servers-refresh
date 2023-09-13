@@ -12,23 +12,31 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.dbconnection = void 0;
-const mongoose_1 = __importDefault(require("mongoose"));
-const enviromentvariable_1 = require("../enviromentvariable/enviromentvariable");
-const URL = enviromentvariable_1.enviromentvariables.MONGODBCONNECT;
-const local = "mongodb://0.0.0.0:27017/uniabuja";
-const dbconnection = () => __awaiter(void 0, void 0, void 0, function* () {
+exports.creatingMessage = void 0;
+const mentormodel_1 = __importDefault(require("../model/mentormodel"));
+const mentoremail_1 = require("../utils/mentoremail");
+const creatingMessage = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const conn = yield mongoose_1.default.connect(local);
-        if (mongoose_1.default.connection.host === "localhost") {
-            console.log("connected to localhost");
-        }
-        else {
-            console.log("Database is live now");
-        }
+        const { name, department, level, email, phoneNumber, ResearchTopic } = req.body;
+        const createData = yield mentormodel_1.default.create({
+            name,
+            email,
+            department,
+            phoneNumber,
+            level,
+            ResearchTopic
+        });
+        (0, mentoremail_1.mentoremailenv)(createData);
+        return res.status(200).json({
+            message: "check your email for verification",
+            data: { createData }
+        });
     }
     catch (error) {
-        console.log("failed to connect to the database", error);
+        return res.status(400).json({
+            message: "failed to send email",
+            data: error
+        });
     }
 });
-exports.dbconnection = dbconnection;
+exports.creatingMessage = creatingMessage;

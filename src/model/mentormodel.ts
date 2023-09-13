@@ -1,6 +1,6 @@
 import mongoose from "mongoose"
 
-interface collaboratorschema {
+interface mentorschema {
     name: string;
     department: string;
     level: string;
@@ -9,9 +9,9 @@ interface collaboratorschema {
     ResearchTopic: string;
 }
 
-interface iemailschema extends collaboratorschema, mongoose.Document{ }
+interface iemailschema extends mentorschema, mongoose.Document{ }
 
-const myemail = new mongoose.Schema<collaboratorschema>(
+const myemail = new mongoose.Schema<mentorschema>(
     {
         name: {
             type: String
@@ -35,5 +35,5 @@ const myemail = new mongoose.Schema<collaboratorschema>(
     {timestamps: true}
 )
 
-const collaboratorprofile = mongoose.model<iemailschema>("collaboratoremail", myemail)
-export default collaboratorprofile
+const mentorprofile = mongoose.model<iemailschema>("mentoremail", myemail)
+export default mentorprofile

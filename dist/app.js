@@ -14,6 +14,7 @@ const textroute_1 = __importDefault(require("./routes/textroute"));
 const GalleryRouter_1 = __importDefault(require("./routes/GalleryRouter"));
 const Pdfrouter_1 = __importDefault(require("./routes/Pdfrouter"));
 const collaboratorrouter_1 = __importDefault(require("./routes/collaboratorrouter"));
+const mentorrouter_1 = __importDefault(require("./routes/mentorrouter"));
 const appConfig = (app) => {
     app.use(express_1.default.json())
         .use((0, cors_1.default)())
@@ -25,5 +26,6 @@ const appConfig = (app) => {
     app.use("/app/gallery", GalleryRouter_1.default);
     app.use("/app/pdf", Pdfrouter_1.default);
     app.use("/app/collaborator", collaboratorrouter_1.default);
+    app.use("/app/mentor", mentorrouter_1.default);
 };
 exports.appConfig = appConfig;

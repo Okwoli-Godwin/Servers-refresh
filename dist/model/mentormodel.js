@@ -24,5 +24,5 @@ const myemail = new mongoose_1.default.Schema({
         type: String
     },
 }, { timestamps: true });
-const collaboratorprofile = mongoose_1.default.model("collaboratoremail", myemail);
-exports.default = collaboratorprofile;
+const mentorprofile = mongoose_1.default.model("mentoremail", myemail);
+exports.default = mentorprofile;
