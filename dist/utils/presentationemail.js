@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.resetPassword = exports.proposalemail = void 0;
+exports.resetPassword = exports.presentationemail = void 0;
 const googleapis_1 = require("googleapis");
 const nodemailer_1 = __importDefault(require("nodemailer"));
 const GOOGLE_ID = "730919110921-2rl40ck7dnkhc4gm1idq7599rb29ubj5.apps.googleusercontent.com ";
@@ -20,7 +20,7 @@ const GOOGLE_SECRET = "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";
 const GOOGLE_REFRESHTOKEN = "1//04g38ARY8A7ZFCgYIARAAGAQSNwF-L9IrRTtHoZvmgrCbFK7P5_FlFY0WXB4LTHHolfiaPUcv7mKis_njZJ_m1QWiLbouBne04aA";
 const GOOGLE_REDIRECT = "https://developers.google.com/oauthplayground/";
 const oAuth = new googleapis_1.google.auth.OAuth2(GOOGLE_ID, GOOGLE_SECRET, GOOGLE_REDIRECT);
-const proposalemail = (sender) => __awaiter(void 0, void 0, void 0, function* () {
+const presentationemail = (sender) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         oAuth.setCredentials({ access_token: GOOGLE_REFRESHTOKEN });
         const getToken = (yield oAuth.getAccessToken()).token;
@@ -40,12 +40,12 @@ const proposalemail = (sender) => __awaiter(void 0, void 0, void 0, function* ()
         const mailerOption = {
             from: `${sender === null || sender === void 0 ? void 0 : sender.email}<${receiverEmail}>`,
             to: receiverEmail,
-            subject: "Training for Proposal Writing",
+            subject: "Training for Presentation",
             html: `<!doctype html>
     <html>
       <head>
         <meta charset="utf-8">
-     <title>Training for Proposal Writing</title>
+     <title>Training for Presentation</title>
       </head>
       <body>
   
@@ -76,7 +76,7 @@ const proposalemail = (sender) => __awaiter(void 0, void 0, void 0, function* ()
         console.log(error);
     }
 });
-exports.proposalemail = proposalemail;
+exports.presentationemail = presentationemail;
 const resetPassword = (user) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         oAuth.setCredentials({ access_token: GOOGLE_REFRESHTOKEN });

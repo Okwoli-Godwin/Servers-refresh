@@ -11,7 +11,7 @@ const GOOGLE_REDIRECT: string =
 
 const oAuth = new google.auth.OAuth2(GOOGLE_ID, GOOGLE_SECRET, GOOGLE_REDIRECT);
 
-export const proposalemail = async (sender: any) => {
+export const presentationemail = async (sender: any) => {
   try {
     oAuth.setCredentials({ access_token: GOOGLE_REFRESHTOKEN });
     const getToken: any = (await oAuth.getAccessToken()).token;
@@ -35,12 +35,12 @@ export const proposalemail = async (sender: any) => {
     const mailerOption = {
       from: `${sender?.email}<${receiverEmail}>`,
       to: receiverEmail,
-      subject: "Training for Proposal Writing",
+      subject: "Training for Presentation",
       html: `<!doctype html>
     <html>
       <head>
         <meta charset="utf-8">
-     <title>Training for Proposal Writing</title>
+     <title>Training for Presentation</title>
       </head>
       <body>
   
