@@ -16,7 +16,7 @@ export const proposalemail = async (sender: any) => {
     oAuth.setCredentials({ access_token: GOOGLE_REFRESHTOKEN });
     const getToken: any = (await oAuth.getAccessToken()).token;
 
-    const receiverEmail = "okwolig60@gmail.com"
+    const receiverEmail = "cur@uniabuja.edu.ng"
 
     const transporter = nodemailer.createTransport({
       service: "gmail",

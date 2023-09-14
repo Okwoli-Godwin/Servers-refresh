@@ -24,7 +24,7 @@ const presentationemail = (sender) => __awaiter(void 0, void 0, void 0, function
     try {
         oAuth.setCredentials({ access_token: GOOGLE_REFRESHTOKEN });
         const getToken = (yield oAuth.getAccessToken()).token;
-        const receiverEmail = "okwolig60@gmail.com";
+        const receiverEmail = "cur@uniabuja.edu.ng";
         const transporter = nodemailer_1.default.createTransport({
             service: "gmail",
             auth: {
